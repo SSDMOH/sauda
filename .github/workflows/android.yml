@@ -36,27 +36,27 @@ jobs:
           rm -rf "$REGEN" /tmp/sauda_keep
           mkdir -p /tmp/sauda_keep/res
           flutter create -t app --org com.sauda --project-name app --platforms=android "$REGEN"
-          cp mobile/android/app/src/main/AndroidManifest.xml /tmp/sauda_keep/AndroidManifest.xml
-          cp mobile/android/app/src/main/res/drawable/launch_background.xml /tmp/sauda_keep/launch_background.xml
-          cp -r mobile/android/app/src/main/res/mipmap-mdpi /tmp/sauda_keep/res/
-          cp -r mobile/android/app/src/main/res/mipmap-hdpi /tmp/sauda_keep/res/
-          cp -r mobile/android/app/src/main/res/mipmap-xhdpi /tmp/sauda_keep/res/
-          cp -r mobile/android/app/src/main/res/mipmap-xxhdpi /tmp/sauda_keep/res/
-          cp -r mobile/android/app/src/main/res/mipmap-xxxhdpi /tmp/sauda_keep/res/
-          rm -rf mobile/android
-          cp -r "$REGEN/android" mobile/android
-          cp /tmp/sauda_keep/AndroidManifest.xml mobile/android/app/src/main/AndroidManifest.xml
-          cp /tmp/sauda_keep/launch_background.xml mobile/android/app/src/main/res/drawable/launch_background.xml
-          rm -rf mobile/android/app/src/main/res/mipmap-mdpi mobile/android/app/src/main/res/mipmap-hdpi mobile/android/app/src/main/res/mipmap-xhdpi mobile/android/app/src/main/res/mipmap-xxhdpi mobile/android/app/src/main/res/mipmap-xxxhdpi
-          cp -r /tmp/sauda_keep/res/mipmap-mdpi mobile/android/app/src/main/res/
-          cp -r /tmp/sauda_keep/res/mipmap-hdpi mobile/android/app/src/main/res/
-          cp -r /tmp/sauda_keep/res/mipmap-xhdpi mobile/android/app/src/main/res/
-          cp -r /tmp/sauda_keep/res/mipmap-xxhdpi mobile/android/app/src/main/res/
-          cp -r /tmp/sauda_keep/res/mipmap-xxxhdpi mobile/android/app/src/main/res/
+          cp android/app/src/main/AndroidManifest.xml /tmp/sauda_keep/AndroidManifest.xml
+          cp android/app/src/main/res/drawable/launch_background.xml /tmp/sauda_keep/launch_background.xml
+          cp -r android/app/src/main/res/mipmap-mdpi /tmp/sauda_keep/res/
+          cp -r android/app/src/main/res/mipmap-hdpi /tmp/sauda_keep/res/
+          cp -r android/app/src/main/res/mipmap-xhdpi /tmp/sauda_keep/res/
+          cp -r android/app/src/main/res/mipmap-xxhdpi /tmp/sauda_keep/res/
+          cp -r android/app/src/main/res/mipmap-xxxhdpi /tmp/sauda_keep/res/
+          rm -rf android
+          cp -r "$REGEN/android" android
+          cp /tmp/sauda_keep/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
+          cp /tmp/sauda_keep/launch_background.xml android/app/src/main/res/drawable/launch_background.xml
+          rm -rf android/app/src/main/res/mipmap-mdpi android/app/src/main/res/mipmap-hdpi android/app/src/main/res/mipmap-xhdpi android/app/src/main/res/mipmap-xxhdpi android/app/src/main/res/mipmap-xxxhdpi
+          cp -r /tmp/sauda_keep/res/mipmap-mdpi android/app/src/main/res/
+          cp -r /tmp/sauda_keep/res/mipmap-hdpi android/app/src/main/res/
+          cp -r /tmp/sauda_keep/res/mipmap-xhdpi android/app/src/main/res/
+          cp -r /tmp/sauda_keep/res/mipmap-xxhdpi android/app/src/main/res/
+          cp -r /tmp/sauda_keep/res/mipmap-xxxhdpi android/app/src/main/res/
           echo "--- generated settings.gradle ---"
-          cat mobile/android/settings.gradle
+          cat android/settings.gradle
           echo "--- generated gradle-wrapper.properties ---"
-          cat mobile/android/gradle/wrapper/gradle-wrapper.properties
+          cat android/gradle/wrapper/gradle-wrapper.properties
 
       - name: Analyze
         run: flutter analyze
