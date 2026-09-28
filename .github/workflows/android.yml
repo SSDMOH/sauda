@@ -53,10 +53,13 @@ jobs:
           cp -r /tmp/sauda_keep/res/mipmap-xhdpi android/app/src/main/res/
           cp -r /tmp/sauda_keep/res/mipmap-xxhdpi android/app/src/main/res/
           cp -r /tmp/sauda_keep/res/mipmap-xxxhdpi android/app/src/main/res/
+          echo "--- generated android tree ---"
+          ls -la android/ || true
+          find android -maxdepth 2 | head -40 || true
           echo "--- generated settings.gradle ---"
-          cat android/settings.gradle
+          cat android/settings.gradle || echo "NO settings.gradle"
           echo "--- generated gradle-wrapper.properties ---"
-          cat android/gradle/wrapper/gradle-wrapper.properties
+          cat android/gradle/wrapper/gradle-wrapper.properties || echo "NO wrapper props"
 
       - name: Analyze
         run: flutter analyze
