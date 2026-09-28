@@ -61,6 +61,13 @@ jobs:
           echo "--- generated gradle-wrapper.properties ---"
           cat android/gradle/wrapper/gradle-wrapper.properties || echo "NO wrapper props"
 
+      - name: Upload generated Android project (one-time repo backfill)
+        uses: actions/upload-artifact@v4
+        with:
+          name: sauda-android-project
+          path: android/
+          retention-days: 7
+
       - name: Analyze
         run: flutter analyze
 
