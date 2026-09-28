@@ -261,7 +261,7 @@ class _SetAlertSheetState extends State<_SetAlertSheet> {
           ),
           const SizedBox(height: 12),
           DropdownButtonFormField<Product>(
-            value: _selected,
+            initialValue: _selected,
             items: _catalog
                 .map((p) => DropdownMenuItem(
                       value: p,
