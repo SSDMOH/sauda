@@ -1,35 +1,43 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin
+    // Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
 }
 
 android {
-    namespace 'com.sauda.app'
-    compileSdk 34
+    namespace = "com.sauda.app"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 
     defaultConfig {
-        applicationId 'com.sauda.app'
-        minSdk 24
-        targetSdk 34
-        versionCode 1
-        versionName '0.1.0'
+        applicationId = "com.sauda.app"
+        // url_launcher and friends need at least 21; we target 24+.
+        minSdk = 24
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
     }
 
     buildTypes {
         release {
-            signingConfig signingConfigs.debug
+            // Debug signing for CI/dev builds. Release signing (upload key)
+            // is configured separately before Play Store submission.
+            signingConfig = signingConfigs.debug
         }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = '17'
     }
 }
 
-dependencies {
-    implementation 'androidx.core:core-ktx:1.12.0'
+flutter {
+    source = "../.."
 }

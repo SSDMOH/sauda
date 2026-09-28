@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Splash background: deep Sauda green while the engine boots. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@android:color/black" />
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#0B3B2C" />
+        </shape>
+    </item>
+</layer-list>
