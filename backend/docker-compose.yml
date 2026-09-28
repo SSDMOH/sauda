@@ -1,0 +1,45 @@
+# Sauda backend — prod-shaped compose.
+#
+# The API itself runs with ZERO external services (in-memory stores + mock
+# adapters are the default). Postgres + Redis are provided here for the
+# production data layer (catalog/offers/ledger in Postgres; price cache,
+# sessions and job queues in Redis) that later milestones will wire up.
+#
+#   docker compose up --build        # API on :8000, postgres on :5432, redis on :6379
+#   docker compose up api            # API only — works standalone
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      STORAGE_MODE: ${STORAGE_MODE:-memory}
+      DATABASE_URL: ${DATABASE_URL:-postgresql://sauda:sauda@postgres:5432/sauda}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: sauda
+      POSTGRES_PASSWORD: sauda
+      POSTGRES_DB: sauda
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+
+volumes:
+  pgdata:
+  redisdata:

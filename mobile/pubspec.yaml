@@ -1,0 +1,32 @@
+name: sauda
+description: Sauda — India's bargain-hunter super-app. Compare true prices across food delivery, quick commerce, cabs and e-commerce, and split carts across platforms to pay the absolute minimum.
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.4.0
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # State management
+  provider: ^6.1.2
+  # HTTP client for the live backend (auto-used when reachable, mock fallback)
+  http: ^1.2.2
+  # Open platform storefronts for checkout handoff
+  url_launcher: ^6.3.1
+  # Hardware-backed token storage for linked platform accounts
+  flutter_secure_storage: ^9.2.4
+  # Savings visualisation (rings, bars)
+  fl_chart: ^0.68.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
