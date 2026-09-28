@@ -26,6 +26,16 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Generate official Gradle wrapper
+        # The repo's android/gradle/wrapper jar is a placeholder; generate the
+        # real one on the runner with an official Gradle distribution so the
+        # wrapper always matches a genuine `gradle wrapper` invocation.
+        run: |
+          curl -sL -o /tmp/gradle.zip https://services.gradle.org/distributions/gradle-8.9-bin.zip
+          unzip -q /tmp/gradle.zip -d /tmp/gradle-dist
+          /tmp/gradle-dist/gradle-8.9/bin/gradle wrapper --gradle-version 8.9 --distribution-type all --no-daemon
+        working-directory: mobile/android
+
       - name: Analyze
         run: flutter analyze
 
